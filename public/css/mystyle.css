@@ -1,0 +1,7 @@
+
+.btn-info:link, .btn-info:visited{
+	color: #130303;
+}
+.btn-info:active, .btn-info:hover {
+	color: #fff;
+}
