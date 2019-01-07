@@ -1,0 +1,78 @@
+<!-- MAIN -->
+    <main role="main">
+      <article>
+
+        <header class="section background-image text-center" style="background-image:url(img/img-05.jpg)">
+
+        </header>
+        <!-- MaNgD     INT  PRIMARY KEY,
+        HoVaTenDem      VARCHAR(40) NOT NULL,
+        Ten             VARCHAR(20) NOT NULL,
+        NgaySinh        DATE,
+        SoID            INT UNIQUE,
+        DiaChi          VARCHAR(60),
+        GioiTinh        VARCHAR(10),
+        SoDienThoai     INT,
+        Email           VARCHAR(40),
+
+        TenNguoiDung    VARCHAR(30) UNIQUE NOT NULL,
+        MatKhau         VARCHAR(30) NOT NULL -->
+
+
+        <div class="container">
+          <form id="contact" action="/sign-up" method="post">
+            <h3 style="color:red">{{status}}</h3>
+            <fieldset>
+              <input placeholder="Your last name" type="text" name="last_name" tabindex="1" required autofocus>
+            </fieldset>
+            <fieldset>
+              <input placeholder="Your first name" type="text" name="first_name" tabindex="2" required autofocus>
+            </fieldset>
+            <fieldset>
+              <input placeholder="Your birthday (yy-mm-dd)" type="text" name="birthday" tabindex="3" required>
+            </fieldset>
+            <fieldset>
+              <input placeholder="Your ID number (number only)" type="text" name="id" tabindex="4" required>
+            </fieldset>
+            <fieldset>
+              <input placeholder="Your address" type="text" name="address" tabindex="5" required>
+            </fieldset>
+            <fieldset>
+              <input type="radio" name="gender" value="M" checked tabindex="6"> Male
+              <input type="radio" name="gender" value="F" tabindex="7"> Female
+            </fieldset>
+            <!-- <div class="center">
+              <input type="checkbox" id="cbx" name="student" value="T" unchecked-value="F"  style="display:none"/>
+              <label for="cbx" class="toggle">Student<span></span></label>
+            </div> -->
+            <fieldset>
+              <input placeholder="Your Phone Number" type="text" name="phone_number" tabindex="7" required>
+            </fieldset>
+            <fieldset>
+              <input placeholder="Your Email" type="email" name="email" tabindex="8" required>
+            </fieldset>
+            <fieldset>
+              <input placeholder="User name" type="text" name="username" tabindex="9" required>
+            </fieldset>
+            <fieldset>
+              <input placeholder="Pass word" type="text" name="password" tabindex="10" required>
+            </fieldset>
+            <!-- <fieldset>
+              <textarea placeholder="Type your message here...." tabindex="5" required></textarea>
+            </fieldset> -->
+            <fieldset>
+              <button name="submit" type="submit" id="contact-submit" data-submit="...Sending1">Sign up</button>
+            </fieldset>
+            <p class="copyright">  Already have an account?  <a href="/log-in" target="_self"> Sign in here </a></p>
+          </form>
+        </div>
+
+
+</div>
+
+
+
+
+      </article>
+
+    </main>

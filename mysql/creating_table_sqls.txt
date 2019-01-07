@@ -1,0 +1,235 @@
+CREATE TABLE NGD
+(
+    MaNgD     INT  PRIMARY KEY,
+    HoVaTenDem      VARCHAR(40) NOT NULL,
+    Ten             VARCHAR(20) NOT NULL,
+    NgaySinh        DATE,
+    SoID            INT UNIQUE, -- CMND --
+    DiaChi          VARCHAR(60),
+    GioiTinh        VARCHAR(10),
+    SoDienThoai     INT,
+    Email           VARCHAR(40),
+
+    TenNguoiDung    VARCHAR(30) UNIQUE NOT NULL,
+    MatKhau         VARCHAR(30) NOT NULL
+
+);
+
+-- 1 - 50
+-- subclass of NgD (overlap)
+CREATE TABLE HV
+(
+    MaHV       INT PRIMARY KEY
+);
+
+-- 51-90
+-- subclass of NgD (overlap)
+CREATE TABLE GIANGVIEN
+(
+    MaGV     INT PRIMARY KEY,
+    ChuyenNganh     VARCHAR(40),
+    TrinhDo         VARCHAR(30)
+
+);
+
+-- 91-100
+-- subclass of NgD (overlap)
+CREATE TABLE NHANVIENCSKH
+(
+    MaNV      INT PRIMARY KEY,  -- NgD.MaNgD--
+    ChuyenMon       VARCHAR(30)
+
+);
+
+-- 1-29
+CREATE TABLE PHIEUPH
+(
+    MaPH                   INT PRIMARY KEY,
+    NoiDungPhanHoi              VARCHAR(400) NOT NULL,
+    MaNgD                 INT NOT NULL,
+    MaNV                  INT NOT NULL
+
+);
+
+-- 1 -100
+CREATE TABLE MONHOC
+(
+    MaMH        INT PRIMARY KEY,
+    GiaMonHoc       FLOAT(20,2) NOT NULL,
+    ThoiGianHoc     INT,
+    SiSo            INT,
+    DoKho           INT, -- level 1 easy, level 2 normal , level 3 hard
+    TenMonHoc       VARCHAR(40) NOT NULL,
+    TrangThai       VARCHAR(20) NOT NULL,
+    MaGV     INT NOT NULL
+
+);
+
+-- 1-100
+CREATE TABLE BAIKIEMTRA
+(
+    MaBaiKT    INT PRIMARY KEY,
+    NgayKiemTra     DATE,
+    ThoiGianLamBai  INT
+);
+
+-- 1-100
+CREATE TABLE KHOAHOC
+(
+    MaKH            INT PRIMARY KEY,
+    TenKhoaHoc      VARCHAR(40) NOT NULL,
+    TrangThai       VARCHAR(20) NOT NULL,
+    GiaKhoaHoc      FLOAT(20,2) NOT NULL,
+    ChietKhau       FLOAT(7,2) NOT NULL,
+    MaBaiKT         INT
+
+
+);
+
+
+-- 1-30
+CREATE TABLE CC
+(
+    SoCC      INT PRIMARY KEY,
+    TenChungChi     VARCHAR(40) NOT NULL,
+    NgayCap         DATE NOT NULL,
+    MaHV            INT NOT NULL,
+    DiemDat         FLOAT(7,2)
+);
+
+-- 1-30
+CREATE TABLE THANHTOANHOCPHI
+(
+    MaGD      INT PRIMARY KEY,
+    TrangThai       VARCHAR(40) NOT NULL,
+    Ngay            DATE NOT NULL,
+    Gio             INT NOT NULL,
+    LoaiThanhToan   VARCHAR(20) NOT NULL,
+    TongTien        FLOAT(20,2) NOT NULL
+);
+
+-- 1-20
+CREATE TABLE DIEM
+(
+    SoDiem          FLOAT(7,2) NOT NULL,
+    MaHV       INT NOT NULL,
+    MaBaiKT    INT NOT NULL,
+    PRIMARY KEY (Sodiem, MaHV, MaBaiKT)
+);
+
+-- 50
+CREATE TABLE MONKHOAHOC
+(
+    TenMKH   VARCHAR(40) NOT NULL,
+    MaMH        INT NOT NULL,
+    MaBaiKT    INT NOT NULL,
+    PRIMARY KEY (TenMKH, MaMH)
+
+);
+
+CREATE TABLE MONKHOAHOCTHUOCKHOAHOC
+(
+    TenMKH   VARCHAR(40) NOT NULL,
+    MaMH        INT NOT NULL,
+    MaKH       INT NOT NULL,
+    PRIMARY KEY (TenMKH, MaMH, MaKH)
+
+);
+
+CREATE TABLE SOANBAIKIEMTRA
+(
+    MaGV     INT NOT NULL,
+    MaBaiKT    INT NOT NULL,
+    PRIMARY KEY (MaGV, MaBaiKT)
+
+);
+
+-- 100
+CREATE TABLE THAMGIAKIEMTRA
+(
+    MaHV       INT NOT NULL,
+    MaBaiKT    INT NOT NULL,
+    PRIMARY KEY (MaHV, MaBaiKT)
+
+);
+
+-- 1-100
+CREATE TABLE NOIDUNGMONHOC
+(
+    MaMH        INT NOT NULL,
+    MaND       INT NOT NULL,
+    Video           VARCHAR(50),  -- ? insert ??
+    TaiLieu         VARCHAR(50),
+    PRIMARY KEY (MaMH, MaND)
+);
+
+-- 30
+CREATE TABLE DANGKYMONKHOAHOC
+(
+    MaGD      INT NOT NULL,
+    TenMKH   VARCHAR(40) NOT NULL,
+    MaMH        INT NOT NULL,
+    MaHV       INT NOT NULL,
+    PRIMARY KEY (MaGD , TenMKH, MaMH)
+);
+
+-- 30
+CREATE TABLE DANGKYKHOAHOC
+(
+    MaGD      INT NOT NULL,
+    MaKH       INT NOT NULL,
+    MaHV       INT NOT NULL,
+    PRIMARY KEY (MaGD, MaKH)
+);
+
+-- 30
+CREATE TABLE CHUNGCHIKHOAHOC
+(
+    SoCC      INT PRIMARY KEY,
+    MaKH       INT NOT NULL
+
+);
+
+-- 30
+CREATE TABLE CHUNGCHIMONKHOAHOC
+(
+    SoCC      INT PRIMARY KEY,
+    TenMKH   VARCHAR(40),
+    MaMH        INT NOT NULL
+);
+
+-- 1-20
+CREATE TABLE THANHTOANONLINE
+(
+    MaGD      INT PRIMARY KEY
+);
+
+-- subclass of THANHTOANONLINE 21-30
+CREATE TABLE DONGTRUCTIEP
+(
+    MaGD      INT PRIMARY KEY,
+    MaThuNgan       INT NOT NULL
+);
+
+-- subclass of THANHTOANONLINE 1-10
+CREATE TABLE INTERNET
+(
+    SoTaiKhoan      INT PRIMARY KEY,
+    MaGD      INT NOT NULL
+);
+
+-- subclass of THANHTOANONLINE 11-15
+CREATE TABLE THECAO
+(
+    SoSerial        INT PRIMARY KEY,
+    MaGD      INT NOT NULL
+);
+
+-- subclass of THANHTOANONLINE 16-20
+CREATE TABLE VIDIENTU
+(
+    MaViDienTu      INT PRIMARY KEY,
+    MaGD      INT NOT NULL
+);
+
+ALTER SESSION SET NLS_DATE_FORMAT = 'DD/MM/YYYY';
