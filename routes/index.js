@@ -1,50 +1,43 @@
 var express = require('express');
 var router = express.Router();
 
-// const {Client} = require('pg');
-// const client = new Client({
-//   // user:'non',
-//   // host:'localhost',
-//   // database:'elearning',
-//   // password:'1024',
-//   // port:5432,
-//
-//   /*
-//   $ sudo -u postgres psql
-//   ALTER USER postgres PASSWORD '1024';
-//
-//   postgresql://[user[:password]@][netloc][:port][/dbname][?param1=value1&...]
-//
-//   postgresql://
-//   postgresql://localhost
-//   postgresql://localhost:5432
-//   postgresql://localhost/mydb
-//   postgresql://user@localhost
-//   postgresql://user:secret@localhost
-//   postgresql://other@localhost/otherdb?connect_timeout=10&application_name=myapp
-//   postgresql://localhost/mydb?user=other&password=secret
-//   */
-//   // connectionString:"postgresql://postgres:1024@localhost:5432/elearning",
-//   // connectionString:"postgresql://postgres:1024@localhost:5432/elearning",
-//   connectionString:process.env.DATABASE_URL,
-//   ssl:false,
-// });
-//
-// client.connect(function(err){
-//   if(err){
-//     console.log('[ERROR] Connect to PostgreSQL. Failed!');
-//     console.log(err);
-//   }else{
-//     console.log('[ERROR] Connect to PostgreSQL. Successful!');
-//   }
-// });
+const {Client} = require('pg');
+const client = new Client({
+  // user:'non',
+  // host:'localhost',
+  // database:'elearning',
+  // password:'1024',
+  // port:5432,
 
-// var con = mysql.createConnection({
-//     host: "localhost",
-//     user: "root",
-//     password: "1234",
-//     database: "elearning"
-// });
+  /*
+  $ sudo -u postgres psql
+  ALTER USER postgres PASSWORD '1024';
+
+  postgresql://[user[:password]@][netloc][:port][/dbname][?param1=value1&...]
+
+  postgresql://
+  postgresql://localhost
+  postgresql://localhost:5432
+  postgresql://localhost/mydb
+  postgresql://user@localhost
+  postgresql://user:secret@localhost
+  postgresql://other@localhost/otherdb?connect_timeout=10&application_name=myapp
+  postgresql://localhost/mydb?user=other&password=secret
+  */
+  // connectionString:"postgresql://postgres:1024@localhost:5432/elearning",
+  // connectionString:"postgresql://postgres:1024@localhost:5432/elearning",
+  connectionString:process.env.DATABASE_URL,
+  ssl:false,
+});
+
+client.connect(function(err){
+  if(err){
+    console.log('[ERROR] Connect to PostgreSQL. Failed!');
+    console.log(err);
+  }else{
+    console.log('[ERROR] Connect to PostgreSQL. Successful!');
+  }
+});
 
 let cookies_options = {
         maxAge: 1000 * 60 * 15, // would expire after 15 minutes
