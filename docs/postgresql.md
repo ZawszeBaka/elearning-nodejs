@@ -72,3 +72,8 @@ git push heroku master
 ```
 $ heroku logs --tail
 ```
+
+# Connect to Database , create new relational tables
+```
+heroku pg:psql
+```

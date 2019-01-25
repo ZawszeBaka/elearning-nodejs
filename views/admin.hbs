@@ -5,24 +5,23 @@
         <header class="section background-image text-center" style="background-image:url(img/img-05.jpg)">
 
         </header>
-        <!-- MaNgD     INT  PRIMARY KEY,
-        HoVaTenDem      VARCHAR(40) NOT NULL,
-        Ten             VARCHAR(20) NOT NULL,
-        NgaySinh        DATE,
-        SoID            INT UNIQUE,
-        DiaChi          VARCHAR(60),
-        GioiTinh        VARCHAR(10),
-        SoDienThoai     INT,
-        Email           VARCHAR(40),
-
-        TenNguoiDung    VARCHAR(30) UNIQUE NOT NULL,
-        MatKhau         VARCHAR(30) NOT NULL -->
 
         <div class="line text-center">
           <h2 class="text-dark text-size-50 text-m-size-40"> USER <b> INFO </b></h2>
           <hr class="break background-primary break-small break-center margin-bottom-50">
         </div>
 
+        <!-- CREATE TABLE USERS (
+            ID              INT  PRIMARY KEY,
+            FNAME           VARCHAR(40) NOT NULL,
+            LNAME           VARCHAR(40) NOT NULL,
+
+            USERNAME        VARCHAR(40) NOT NULL,
+            PASSWORD        VARCHAR(40) NOT NULL,
+
+            DATE_OF_REGISTRATION        DATE,
+            DATE_OF_LASTEST_LOGON       DATE
+        ); -->
         <div class="limiter">
         		<div class="container-table100">
         			<div class="wrap-table100">
@@ -48,11 +47,11 @@
         							<tbody>
                         {{#each users}}
         								<tr class="row100 body">
-        									<td class="cell100 column2">{{MaNgD}}</td>
-        									<td class="cell100 column2">{{HoVaTenDem}}</td>
-        									<td class="cell100 column2">{{Ten}}</td>
-        									<td class="cell100 column3">{{TenNguoiDung}}</td>
-        									<td class="cell100 column4">{{MatKhau}}</td>
+        									<td class="cell100 column2">{{id}}</td>
+        									<td class="cell100 column2">{{fname}}</td>
+        									<td class="cell100 column2">{{lname}}</td>
+        									<td class="cell100 column3">{{username}}</td>
+        									<td class="cell100 column4">{{password}}</td>
         								</tr>
                         {{/each}}
         							</tbody>

@@ -25,32 +25,23 @@ let cookies_options = {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('home', { title: 'E-Learning' }); // index.hbs file is rendered
+  res.render('index', { title: 'E-Learning' }); // index.hbs file is rendered
 });
 
-// About page
-router.get('/about-us', function(req, res, next) {
-  res.render('about-us', { title: 'About us' }); // about-us.hbs file is rendered
+router.get('/contact', function(req, res, next){
+	res.render('contact', {title: 'Contact'}); // contact.hbs file is rendered
 });
 
-// Services
-router.get('/services', function(req, res, next) {
-  res.render('services', { title: 'Services' }); // services.hbs file is rendered
+router.get('/cart', function(req, res, next){
+	res.render('cart', {title: 'Cart'}); // contact.hbs file is rendered
 });
 
-// Gallery
-router.get('/gallery', function(req, res, next){
-	res.render('gallery', {title: 'Gallery'}); // gallery.hbs file is rendered
+router.get('/categories', function(req, res, next){
+	res.render('categories', {title: 'Categories'}); // contact.hbs file is rendered
 });
 
-// Contact
-router.get('/checkConnection', function(req, res, next){
-
-	res.render('checkConnection', {title: 'Contact'}); // contact.hbs file is rendered
-});
-
-router.post('/contact', function(req, res, next){
-	res.render('submitted-form', {title: 'Thank you for using our services'}); // contact.hbs file is rendered
+router.get('/product', function(req, res, next){
+	res.render('product', {title: 'Product'}); // contact.hbs file is rendered
 });
 
 // Sign up page
@@ -131,8 +122,16 @@ router.post('/log-in', function(req, res, next){
 
 // Admin page
 router.get('/admin', function(req,res,next){
-  var sql = "SELECT * FROM NGD ";
+  var sql = "SELECT * FROM USERS ";
   console.log(" [QUERY] " + sql);
+  client.query(sql,function(err,rs,fields){
+    if(err) throw err;
+    else {
+      console.log('[INFO] Result ');
+      console.log(rs);
+      res.render('admin',{title:'Admin',users:rs.rows})
+    }
+  });
   // con.query(sql, function(err, rs, fields){
   //     if (err) throw err;
   //     console.log(' [INFO] Result ');
