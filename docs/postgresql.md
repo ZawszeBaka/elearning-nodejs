@@ -31,8 +31,9 @@ ALTER USER postgres PASSWORD '1024';
 $ sudo netstat -plunt |grep postgres
 ```
 
--- Syntax:
+-- Export DATABASE_URL
 ```
+[SYNTAX]
 postgresql://[user[:password]@][netloc][:port][/dbname][?param1=value1&...]
 
 postgresql://
@@ -44,12 +45,30 @@ postgresql://user:secret@localhost
 postgresql://other@localhost/otherdb?connect_timeout=10&application_name=myapp
 postgresql://localhost/mydb?user=other&password=secret
 ```
+```
+$ export DATABASE_URL=postgresql://postgres:1024@localhost:5432/elearning
+```
 
 # Deploy Heroku
 ```
 heroku login
 
+git status
 git add .
 git commit -am "make it better"
 git push heroku master
+```
+
+# When pushing code to Heroku , change these code lines
+```
+[index.js]
+    connectionString:process.env.DATABASE_URL
+
+[package.json]
+    "start": "node ./bin/www"
+```
+
+# Show logs
+```
+$ heroku logs --tail
 ```
